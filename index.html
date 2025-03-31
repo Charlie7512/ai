@@ -19,15 +19,17 @@
         #chat-container {
             width: 60%;
             height: 500px;
-            border: 1px solid #333;
-            padding: 10px;
+            border-radius: 10px;
+            padding: 15px;
             overflow-y: auto;
             background: #1E1E1E;
+            border: 1px solid #333;
         }
         #input-box {
             width: 60%;
             margin-top: 10px;
             display: flex;
+            gap: 10px;
         }
         input, button {
             padding: 10px;
@@ -35,10 +37,14 @@
             color: white;
             border: none;
             outline: none;
+            border-radius: 5px;
         }
         button {
             background: #6200EA;
             cursor: pointer;
+        }
+        button:hover {
+            background: #7A00FF;
         }
     </style>
 </head>
@@ -46,7 +52,7 @@
     <h1>AI Chatbot</h1>
     <div id="chat-container"></div>
     <div id="input-box">
-        <input type="text" id="user-input" placeholder="Type a message...">
+        <input type="text" id="user-input" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
         <button onclick="sendMessage()">Send</button>
         <button onclick="generateImage()">Generate Image</button>
         <input type="file" id="file-upload" accept="image/*" onchange="uploadFile()">
@@ -79,6 +85,12 @@
                 chatContainer.scrollTop = chatContainer.scrollHeight;
             })
             .catch(error => console.error("Error:", error));
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
         }
 
         function generateImage() {
