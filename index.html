@@ -83,7 +83,15 @@
             } else if (input.includes("how are you")) {
                 return "I'm just a bot, but I'm here to help! How about you?";
             } else if (input.includes("what can you do")) {
-                return "I can chat with you, generate images, and process uploaded files!";
+                return "I can chat with you, generate images, process uploaded files, and help with coding!";
+            } else if (input.includes("code me")) {
+                return "Sure! What kind of code do you need? JavaScript, Python, or something else?";
+            } else if (input.includes("write me a function")) {
+                return "Certainly! What kind of function would you like me to write for you?";
+            } else if (input.includes("javascript") && input.includes("function")) {
+                return `Here's a simple JavaScript function:\n\nfunction greet(name) {\n    return 'Hello, ' + name;\n}\n\nYou can call it with greet('Alice')!`;
+            } else if (input.includes("python") && input.includes("function")) {
+                return `Here's a simple Python function:\n\ndef greet(name):\n    return f"Hello, {name}"\n\nYou can call it with greet('Alice')!`;
             } else {
                 return "That's interesting! Tell me more.";
             }
