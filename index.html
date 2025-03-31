@@ -59,7 +59,7 @@
     </div>
 
     <script>
-        function sendMessage() {
+        async function sendMessage() {
             let userInput = document.getElementById("user-input").value;
             if (!userInput) return;
             
@@ -67,24 +67,18 @@
             chatContainer.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
             document.getElementById("user-input").value = "";
             
-            fetch("https://api.openai.com/v1/chat/completions", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": "Bearer YOUR_OPENAI_API_KEY"
-                },
-                body: JSON.stringify({
-                    model: "gpt-4-turbo",
-                    messages: [{ role: "user", content: userInput }]
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                let botResponse = data.choices[0].message.content;
+            // Simulated AI response for now
+            setTimeout(() => {
+                let responses = [
+                    "Hi, how was your day? ❤️",
+                    "I'm here to chat! 😊",
+                    "Tell me something interesting! 😃",
+                    "How can I assist you today? 🤖"
+                ];
+                let botResponse = responses[Math.floor(Math.random() * responses.length)];
                 chatContainer.innerHTML += `<p><strong>AI:</strong> ${botResponse}</p>`;
                 chatContainer.scrollTop = chatContainer.scrollHeight;
-            })
-            .catch(error => console.error("Error:", error));
+            }, 500);
         }
 
         function handleKeyPress(event) {
@@ -94,24 +88,14 @@
         }
 
         function generateImage() {
-            fetch("https://api.openai.com/v1/images/generations", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": "Bearer YOUR_OPENAI_API_KEY"
-                },
-                body: JSON.stringify({
-                    prompt: "A futuristic AI assistant in a cyberpunk setting",
-                    n: 1,
-                    size: "512x512"
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                let imageUrl = data.data[0].url;
-                document.getElementById("chat-container").innerHTML += `<p><strong>AI:</strong><br><img src="${imageUrl}" width="200"></p>`;
-            })
-            .catch(error => console.error("Error:", error));
+            let chatContainer = document.getElementById("chat-container");
+            chatContainer.innerHTML += `<p><strong>AI:</strong> Generating image...</p>`;
+            
+            setTimeout(() => {
+                let imageUrl = "https://via.placeholder.com/512"; // Placeholder image
+                chatContainer.innerHTML += `<p><strong>AI:</strong><br><img src="${imageUrl}" width="200"></p>`;
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }, 1000);
         }
 
         function uploadFile() {
@@ -123,6 +107,7 @@
             reader.onload = function(event) {
                 let chatContainer = document.getElementById("chat-container");
                 chatContainer.innerHTML += `<p><strong>You uploaded:</strong><br><img src="${event.target.result}" width="200"></p>`;
+                chatContainer.scrollTop = chatContainer.scrollHeight;
             };
             reader.readAsDataURL(file);
         }
