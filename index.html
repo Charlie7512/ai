@@ -1,132 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Chatbot</title>
-    <style>
-        body {
-            background-color: #121212;
-            color: white;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-        #chat-container {
-            width: 60%;
-            height: 500px;
-            border-radius: 10px;
-            padding: 15px;
-            overflow-y: auto;
-            background: #1E1E1E;
-            border: 1px solid #333;
-        }
-        #input-box {
-            width: 60%;
-            margin-top: 10px;
-            display: flex;
-            gap: 10px;
-        }
-        input, button {
-            padding: 10px;
-            background: #333;
-            color: white;
-            border: none;
-            outline: none;
-            border-radius: 5px;
-        }
-        button {
-            background: #6200EA;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #7A00FF;
-        }
-    </style>
+<title>AI Assistant</title>
 </head>
 <body>
-    <h1>AI Chatbot</h1>
-    <div id="chat-container"></div>
-    <div id="input-box">
-        <input type="text" id="user-input" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
-        <button onclick="sendMessage()">Send</button>
-        <button onclick="generateImage()">Generate Image</button>
-        <input type="file" id="file-upload" accept="image/*" onchange="uploadFile()">
-    </div>
-
-    <script>
-        async function sendMessage() {
-            let userInput = document.getElementById("user-input").value;
-            if (!userInput) return;
-            
-            let chatContainer = document.getElementById("chat-container");
-            chatContainer.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
-            document.getElementById("user-input").value = "";
-            
-            let botResponse = getBotResponse(userInput);
-            
-            setTimeout(() => {
-                chatContainer.innerHTML += `<p><strong>AI:</strong> ${botResponse}</p>`;
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            }, 500);
-        }
-
-        function getBotResponse(input) {
-            input = input.toLowerCase();
-            
-            if (input.includes("hi") || input.includes("hello")) {
-                return "Hi there! How can I assist you today? 😊";
-            } else if (input.includes("how are you")) {
-                return "I'm just a bot, but I'm here to help! How about you?";
-            } else if (input.includes("what can you do")) {
-                return "I can chat with you, generate images, process uploaded files, and help with coding!";
-            } else if (input.includes("code me")) {
-                return "Sure! What kind of code do you need? JavaScript, Python, or something else?";
-            } else if (input.includes("write me a function")) {
-                return "Certainly! What kind of function would you like me to write for you?";
-            } else if (input.includes("javascript") && input.includes("function")) {
-                return `Here's a simple JavaScript function:\n\nfunction greet(name) {\n    return 'Hello, ' + name;\n}\n\nYou can call it with greet('Alice')!`;
-            } else if (input.includes("python") && input.includes("function")) {
-                return `Here's a simple Python function:\n\ndef greet(name):\n    return f"Hello, {name}"\n\nYou can call it with greet('Alice')!`;
-            } else {
-                return "That's interesting! Tell me more.";
-            }
-        }
-
-        function handleKeyPress(event) {
-            if (event.key === "Enter") {
-                sendMessage();
-            }
-        }
-
-        function generateImage() {
-            let chatContainer = document.getElementById("chat-container");
-            chatContainer.innerHTML += `<p><strong>AI:</strong> Generating image...</p>`;
-            
-            setTimeout(() => {
-                let imageUrl = "https://via.placeholder.com/512"; // Placeholder image
-                chatContainer.innerHTML += `<p><strong>AI:</strong><br><img src="${imageUrl}" width="200"></p>`;
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            }, 1000);
-        }
-
-        function uploadFile() {
-            let fileInput = document.getElementById("file-upload");
-            let file = fileInput.files[0];
-            if (!file) return;
-            
-            let reader = new FileReader();
-            reader.onload = function(event) {
-                let chatContainer = document.getElementById("chat-container");
-                chatContainer.innerHTML += `<p><strong>You uploaded:</strong><br><img src="${event.target.result}" width="200"></p>`;
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            };
-            reader.readAsDataURL(file);
-        }
-    </script>
-</body>
-</html>
+<h1>AI Assistant</h1>
+<input type="text" id="userInput" placeholder="Ask about Lua or HTML..."
+<script>
+function respond() {
+    let input = document.getElementById('userInput').value.
+if (input.includes("lua")) {
+        response = "Lua is great for game development! It uses simple syntax.";
+    } else if (input.includes("html")) {
+        response = "HTML is used for web pages. Remember to use tags like <div> and <p>.";
+    } else {
+        response = "I'm here to help! Ask me about Lua or HTML."
+document.getElementById('response').
